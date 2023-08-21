@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { User, Blogs } = require("../models");
+const { User, Blog } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    const blogData = await Blogs.findAll({
+    const blogData = await Blog.findAll({
       include: [
         {
           model: User,
@@ -24,9 +24,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/blogs/:id", async (req, res) => {
+router.get("/blog/:id", async (req, res) => {
   try {
-    const blogData = await Blogs.findByPk(req.params.id, {
+    const blogData = await Blog.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -35,10 +35,10 @@ router.get("/blogs/:id", async (req, res) => {
       ],
     });
 
-    const blogs = blogData.get({ plain: true });
+    const blog = blogData.get({ plain: true });
 
-    res.render("blogs", {
-      ...blogs,
+    res.render("blog", {
+      ...blog,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -50,7 +50,7 @@ router.get("/profile", withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
-      include: [{ model: Blogs }],
+      include: [{ model: Blog }],
     });
 
     const user = userData.get({ plain: true });

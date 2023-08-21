@@ -23,11 +23,11 @@
         </div>
     </div>
 
-    {{#if blogposts.length}}
-    <div class="col-lg-2 col-md-12">
+    {{#if blogs.length}}
+    <div class="col-lg-2 col-md-12" id="blog-list">
         <h3>Your Blogposts:</h3>
 
-        {{#each blogposts as |blogpost|}}
+        {{#each blogs as |blogpost|}}
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -43,4 +43,4 @@
     {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+<script src="./js/blogs.js"></script>
