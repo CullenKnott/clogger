@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-auto">
-        <h2>Logged in as {{name}}</h2>
+        <h3>Logged in as {{name}}</h3>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-12 col-md-12">
             <form class="form blog-form">
                 <div class="form-group">
                     <label for="title-blog">title:</label>
@@ -24,18 +24,19 @@
     </div>
 
     {{#if blogs.length}}
-    <div class="col-lg-2 col-md-12" id="blog-list">
+    <div class="col-lg-6 col-md-12" id="blog-list">
         <h3>Your Blogposts:</h3>
 
         {{#each blogs as |blogpost|}}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8">
+                <div>
                     <h4><a href="/blogpost/{{blogpost.id}}">{{blogpost.title}}</a></h4>
+                    <div>{{blogpost.text}}</div>
                 </div>
             </div>
             <div class="col-md-4">
-                <button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}"></button>
+                <button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}">delete</button>
             </div>
         </div>
         {{/each}}
